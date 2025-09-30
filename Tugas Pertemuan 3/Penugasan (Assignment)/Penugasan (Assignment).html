@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Operator Logika</title>
+</head>
+
+<body>
+    <h1>Contoh Operator Logika</h1>
+
+    <script>
+        var aku = 20;
+        var kamu = 19;
+
+        var benar = aku > kamu;
+        var salah = aku < kamu;
+        var hasil;
+
+        // AND
+        hasil = benar && salah;
+        document.write(`${benar} && ${salah} = ${hasil}<br>`);
+
+        // OR
+        hasil = benar || salah;
+        document.write(`${benar} || ${salah} = ${hasil}<br>`);
+
+        // NOT
+        hasil = !benar;
+        document.write(`!${benar} = ${hasil}<br>`);
+    </script>
+</body>
+
+</html>
