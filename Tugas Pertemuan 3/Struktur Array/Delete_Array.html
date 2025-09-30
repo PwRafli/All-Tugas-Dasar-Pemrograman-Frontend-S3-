@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete Array</title>
+</head>
+<body>
+<script>
+    var buah = ["Apel", "Jeruk", "Manggis", "Semangka"];
+    delete buah[2];  // Menghapus index ke-2, tapi meninggalkan ruang kosong
+
+    document.write("<h3>Isi Array Setelah Delete:</h3>");
+    document.write("<ul>");
+    buah.forEach((item, index) => {
+        document.write(`<li>Index ${index}: ${item}</li>`);
+    });
+    document.write("</ul>");
+</script>
+</body>
+</html>
