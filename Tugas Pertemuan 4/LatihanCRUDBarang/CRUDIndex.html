@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Data Barang - LocalStorage</title>
+    <link rel="stylesheet" href="CRUDstyle.css" />
+</head>
+
+<body>
+    <h2>💼 CRUD Data Barang (Dengan LocalStorage + Tabel)</h2>
+
+    <fieldset>
+        <legend>Input Barang</legend>
+        <input type="text" id="barang" placeholder="Input nama barang..." />
+        <input type="button" id="tambah" value="Tambah Barang" />
+        <input type="button" id="hapusSemua" value="Hapus Semua Barang" />
+    </fieldset>
+
+    <table id="tabelBarang">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Barang</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="tabel-body"></tbody>
+    </table>
+
+    <script src="CRUDfungsi.js"></script>
+</body>
+
+</html>
