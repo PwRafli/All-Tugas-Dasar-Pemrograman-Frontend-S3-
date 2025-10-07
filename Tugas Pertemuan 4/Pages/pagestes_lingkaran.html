@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menghitung Lingkaran</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Menghitung Luas dan Keliling Lingkaran</h2>
+        <button id="hitungBtn">Hitung Sekarang</button>
+    </div>
+
+    <script type="module">
+        import { luasLingkaran, kelilingLingkaran } from '../modules/lingkaran.js';
+
+        document.getElementById('hitungBtn').addEventListener('click', () => {
+            const radius = parseFloat(prompt("Masukkan panjang radius lingkaran:"));
+            if (isNaN(radius) || radius <= 0) {
+                alert("Masukkan angka yang valid!");
+                return;
+            }
+
+            const luas = luasLingkaran(radius);
+            const keliling = kelilingLingkaran(radius);
+
+            alert(`Luas lingkaran: ${luas}\nKeliling lingkaran: ${keliling}`);
+        });
+    </script>
+</body>
+
+</html>
