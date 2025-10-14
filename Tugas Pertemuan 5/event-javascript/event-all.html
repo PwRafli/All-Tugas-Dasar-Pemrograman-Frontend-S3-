@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan Semua Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #message {
+            background: lightgreen;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1️⃣ EVENT KLIK -->
+    <section>
+        <h2>1. Event Klik</h2>
+        <button onclick="klikHTML()">Klik (HTML onclick)</button>
+        <button id="btnClickJS">Klik (addEventListener)</button>
+        <p id="outputClick">Belum ada aksi.</p>
+    </section>
+
+    <!-- 2️⃣ EVENT MOUSE -->
+    <section>
+        <h2>2. Event Mouse</h2>
+        <button id="btnEnter">Mouse Enter</button>
+        <button id="btnHover">Hover</button>
+        <button id="btnOut">Mouse Out</button>
+    </section>
+
+    <!-- 3️⃣ EVENT KEYBOARD -->
+    <section>
+        <h2>3. Event Keyboard</h2>
+        <h3 id="keydown"></h3>
+        <h3 id="keypress"></h3>
+        <h3 id="keyup"></h3>
+    </section>
+
+    <!-- 4️⃣ EVENT CHANGE -->
+    <section>
+        <h2>4. Event Change</h2>
+        <label for="buah">Pilih Buah:</label>
+        <select id="buah">
+            <option>Apel</option>
+            <option>Mangga</option>
+            <option>Jeruk</option>
+        </select>
+        <p id="outputChange"></p>
+    </section>
+
+    <!-- 5️⃣ EVENT FORM -->
+    <section>
+        <h2>5. Event Form</h2>
+        <form id="formLogin">
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="username"><br><br>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="password"><br><br>
+            <button type="submit">Login</button>
+            <button type="reset">Clear</button>
+        </form>
+        <p id="feedback"></p>
+    </section>
+
+    <!-- 6️⃣ CUSTOM EVENT -->
+    <section>
+        <h2>6. Custom Event</h2>
+        <button id="btnCustom">Daftar Sekarang</button>
+        <div id="message">Pendaftaran berhasil!</div>
+    </section>
+
+    <script>
+        // ========================
+        // 1. EVENT KLIK
+        // ========================
+        function klikHTML() {
+            document.getElementById("outputClick").innerText = "Tombol HTML onclick diklik!";
+        }
+
+        const btnClickJS = document.getElementById("btnClickJS");
+        btnClickJS.addEventListener("click", function () {
+            document.getElementById("outputClick").innerText = "Tombol addEventListener diklik!";
+        });
+
+        // ========================
+        // 2. EVENT MOUSE
+        // ========================
+        const btnEnter = document.getElementById("btnEnter");
+        const btnHover = document.getElementById("btnHover");
+        const btnOut = document.getElementById("btnOut");
+
+        btnEnter.addEventListener("mouseenter", e => e.target.innerText = "Mouse sudah masuk");
+        btnHover.addEventListener("mouseover", e => e.target.innerText = "Mouse di atas elemen");
+        btnOut.addEventListener("mouseout", e => e.target.innerText = "Mouse sudah keluar");
+
+        // ========================
+        // 3. EVENT KEYBOARD
+        // ========================
+        const keydown = document.getElementById("keydown");
+        const keypress = document.getElementById("keypress");
+        const keyup = document.getElementById("keyup");
+
+        document.addEventListener("keydown", e => keydown.innerText = `Menekan: ${e.key}`);
+        document.addEventListener("keypress", e => keypress.innerText = `Menahan: ${e.key}`);
+        document.addEventListener("keyup", e => keyup.innerText = `Melepas: ${e.key}`);
+
+        // ========================
+        // 4. EVENT CHANGE
+        // ========================
+        const buah = document.getElementById("buah");
+        const outputChange = document.getElementById("outputChange");
+        buah.addEventListener("change", e => outputChange.innerText = `Anda memilih: ${e.target.value}`);
+
+        // ========================
+        // 5. EVENT FORM
+        // ========================
+        const formLogin = document.getElementById("formLogin");
+        const feedback = document.getElementById("feedback");
+
+        formLogin.addEventListener("submit", e => {
+            e.preventDefault();
+            const data = new FormData(e.target);
+            feedback.innerHTML = `Login dengan username <code>${data.get("username")}</code> dikirim!`;
+        });
+
+        formLogin.addEventListener("reset", () => {
+            feedback.textContent = "Form dibersihkan!";
+        });
+
+        // ========================
+        // 6. CUSTOM EVENT
+        // ========================
+        const btnCustom = document.getElementById("btnCustom");
+        const message = document.getElementById("message");
+        const eventRegister = new Event("register-complete");
+
+        document.addEventListener("register-complete", () => {
+            message.style.display = "block";
+        });
+
+        btnCustom.addEventListener("click", () => {
+            document.dispatchEvent(eventRegister);
+        });
+    </script>
+</body>
+
+</html>
