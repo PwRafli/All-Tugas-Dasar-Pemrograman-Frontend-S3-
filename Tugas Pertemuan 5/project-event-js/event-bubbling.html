@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Event Handling JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #2c3e50;
+        }
+
+        p {
+            padding: 10px;
+            background: #eee;
+            cursor: pointer;
+        }
+
+        strong {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Contoh Event Handling di JavaScript</h1>
+
+    <!-- Bagian 1: Event Dasar -->
+    <h2>1. Event Dasar</h2>
+    <button onclick="alert('Tombol diklik!')">Klik Saya (onclick)</button>
+    <button id="btnEvent">Klik Saya (addEventListener)</button>
+
+    <!-- Bagian 2: Event Bubbling -->
+    <h2>2. Event Bubbling</h2>
+    <p id="outer1">Coba klik teks ini. Coba juga klik <strong id="inner1">strong teks ini</strong></p>
+
+    <!-- Bagian 3: Event Capturing -->
+    <h2>3. Event Capturing</h2>
+    <p id="outer2">Coba klik teks ini. Coba juga klik <strong id="inner2">strong teks ini</strong></p>
+
+    <!-- Bagian 4: Stop Propagation -->
+    <h2>4. Mencegah Event Propagation</h2>
+    <p id="outer3">Coba klik teks ini. Coba juga klik <strong id="inner3">strong teks ini</strong></p>
+
+    <script>
+        // =====================
+        // Bagian 1: Event Dasar
+        // =====================
+        const btnEvent = document.getElementById("btnEvent");
+        btnEvent.addEventListener("click", () => {
+            alert("Tombol dengan addEventListener diklik!");
+        });
+
+        // ======================
+        // Bagian 2: Bubbling
+        // ======================
+        const outer1 = document.getElementById("outer1");
+        const inner1 = document.getElementById("inner1");
+
+        outer1.addEventListener("click", () => {
+            alert("Outer elemen diklik (Bubbling)");
+        });
+
+        inner1.addEventListener("click", () => {
+            alert("Inner elemen diklik (Bubbling)");
+        });
+
+        // ======================
+        // Bagian 3: Capturing
+        // ======================
+        const outer2 = document.getElementById("outer2");
+        const inner2 = document.getElementById("inner2");
+
+        outer2.addEventListener("click", () => {
+            alert("Outer elemen diklik (Capturing)");
+        }, true);
+
+        inner2.addEventListener("click", () => {
+            alert("Inner elemen diklik (Capturing)");
+        }, true);
+
+        // ======================
+        // Bagian 4: Stop Propagation
+        // ======================
+        const outer3 = document.getElementById("outer3");
+        const inner3 = document.getElementById("inner3");
+
+        outer3.addEventListener("click", () => {
+            alert("Outer elemen diklik (Propagation)");
+        });
+
+        inner3.addEventListener("click", (event) => {
+            alert("Inner elemen diklik (Propagation dihentikan)");
+            event.stopPropagation();
+        });
+
+    </script>
+</body>
+
+</html>

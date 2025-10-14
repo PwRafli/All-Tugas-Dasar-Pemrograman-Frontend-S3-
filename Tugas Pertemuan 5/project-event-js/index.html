@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Event JavaScript</title>
+    <!-- Hubungkan ke CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🎯 Latihan Event Handling di JavaScript</h1>
+
+    <!-- Bagian 1: Event Dasar -->
+    <section>
+        <h2>1. Event Dasar</h2>
+        <button onclick="alert('Tombol onclick diklik!')">Klik (onclick)</button>
+        <button id="btnEvent">Klik (addEventListener)</button>
+    </section>
+
+    <!-- Bagian 2: Event Bubbling -->
+    <section>
+        <h2>2. Event Bubbling</h2>
+        <p id="outer1">Coba klik teks ini. Coba juga klik <strong id="inner1">strong teks ini</strong></p>
+    </section>
+
+    <!-- Bagian 3: Event Capturing -->
+    <section>
+        <h2>3. Event Capturing</h2>
+        <p id="outer2">Coba klik teks ini. Coba juga klik <strong id="inner2">strong teks ini</strong></p>
+    </section>
+
+    <!-- Bagian 4: Stop Propagation -->
+    <section>
+        <h2>4. Mencegah Event Propagation</h2>
+        <p id="outer3">Coba klik teks ini. Coba juga klik <strong id="inner3">strong teks ini</strong></p>
+    </section>
+
+    <!-- Hubungkan ke JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

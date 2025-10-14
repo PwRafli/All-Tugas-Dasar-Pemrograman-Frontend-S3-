@@ -1,0 +1,110 @@
+/* ===== Global Style ===== */
+body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    background: #f5f6fa;
+    color: #2c3e50;
+}
+
+h1 {
+    text-align: center;
+    color: #34495e;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-top: 25px;
+}
+
+section {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background: #3498db;
+    color: white;
+    padding: 10px 18px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+p {
+    background: #ecf0f1;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+strong {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+section:hover {
+    transform: scale(1.01);
+    transition: transform 0.3s;
+}
+
+/* ===== Media Queries ===== */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        padding: 8px 14px;
+        margin-bottom: 10px;
+    }
+
+    section {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+section {
+    padding: 10px;
+}
+
+@media screen and (max-width: 240px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    button {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    section {
+        padding: 8px;
+    }
+}
