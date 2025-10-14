@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Event - Penjualan Motor (Tanpa CSS)</title>
+</head>
+
+<body>
+    <h2>Tugas Event - Penjualan Motor</h2>
+
+    <!-- Form Pembelian Motor -->
+    <form id="motorForm">
+        <!-- Merk Motor -->
+        <label for="motorBrand">Merk Motor</label><br>
+        <select id="motorBrand">
+            <option value="" selected disabled>-- Pilih Merk Motor --</option>
+            <option value="honda" data-price="15000000">Honda - Rp 15.000.000</option>
+            <option value="yamaha" data-price="16000000">Yamaha - Rp 16.000.000</option>
+            <option value="suzuki" data-price="14000000">Suzuki - Rp 14.000.000</option>
+        </select>
+        <br><br>
+
+        <!-- Aksesoris -->
+        <p>Aksesoris:</p>
+        <input type="checkbox" id="velg" value="velg" data-price="1500000">
+        <label for="velg">Velg - Rp 1.500.000</label><br>
+        <input type="checkbox" id="helm" value="helm" data-price="500000">
+        <label for="helm">Helm - Rp 500.000</label><br>
+        <input type="checkbox" id="jaket" value="jaket" data-price="750000">
+        <label for="jaket">Jaket - Rp 750.000</label>
+        <br><br>
+
+        <!-- Metode Pembayaran -->
+        <p>Cara Pembayaran:</p>
+        <input type="radio" name="paymentMethod" id="tunai" value="tunai">
+        <label for="tunai">Tunai</label><br>
+        <input type="radio" name="paymentMethod" id="kredit" value="kredit">
+        <label for="kredit">Kredit</label>
+        <br><br>
+
+        <!-- Harga -->
+        <label for="harga">Harga:</label>
+        <input type="text" id="harga" disabled><br><br>
+
+        <label for="bungaDiskon">Bunga/Diskon:</label>
+        <input type="text" id="bungaDiskon" disabled><br><br>
+
+        <label for="total">Total:</label>
+        <input type="text" id="total" disabled><br><br>
+
+        <!-- Tombol -->
+        <button type="button" id="resetBtn">Reset</button>
+        <button type="button" id="prosesBtn">Proses</button>
+    </form>
+
+    <hr>
+
+    <!-- Daftar Harga Motor -->
+    <h3>Daftar Harga Motor</h3>
+    <table border="1">
+        <tr>
+            <th>Merk</th>
+            <th>Harga</th>
+        </tr>
+        <tr>
+            <td>Honda</td>
+            <td>Rp 15.000.000</td>
+        </tr>
+        <tr>
+            <td>Yamaha</td>
+            <td>Rp 16.000.000</td>
+        </tr>
+        <tr>
+            <td>Suzuki</td>
+            <td>Rp 14.000.000</td>
+        </tr>
+    </table>
+
+    <!-- Daftar Harga Aksesoris -->
+    <h3>Daftar Harga Aksesoris</h3>
+    <table border="1">
+        <tr>
+            <th>Aksesoris</th>
+            <th>Harga</th>
+        </tr>
+        <tr>
+            <td>Velg</td>
+            <td>Rp 1.500.000</td>
+        </tr>
+        <tr>
+            <td>Helm</td>
+            <td>Rp 500.000</td>
+        </tr>
+        <tr>
+            <td>Jaket</td>
+            <td>Rp 750.000</td>
+        </tr>
+    </table>
+
+    <p>
+        <strong>Informasi Pembayaran:</strong><br>
+        • Tunai → Diskon 10%<br>
+        • Kredit → Bunga 15%
+    </p>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
