@@ -1,0 +1,27 @@
+[
+    {
+        "nama": "Andi Pratama",
+        "umur": 29,
+        "kota": "Surabaya"
+    },
+    {
+        "nama": "Siti Nurhaliza",
+        "umur": 35,
+        "kota": "Bandung"
+    },
+    {
+        "nama": "Bambang Sutrisno",
+        "umur": 42,
+        "kota": "Medan"
+    },
+    {
+        "nama": "Dewi Lestari",
+        "umur": 23,
+        "kota": "Makassar"
+    },
+    {
+        "nama": "Ahmad Yani",
+        "umur": 38,
+        "kota": "Semarang"
+    }
+]

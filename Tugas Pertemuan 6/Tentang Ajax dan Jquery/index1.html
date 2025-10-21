@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh AJAX dengan jQuery</title>
+    <!-- Tambahkan jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h2>Contoh Penggunaan AJAX dengan jQuery</h2>
+    <button id="tombol">Tampilkan Data</button>
+    <div id="hasil"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#tombol").click(function () {
+                $.ajax({
+                    url: "data.json",       // file data yang akan diambil
+                    type: "GET",            // metode HTTP
+                    dataType: "json",       // tipe data yang diharapkan
+                    success: function (data) {
+                        // tampilkan data ke halaman
+                        $("#hasil").html(`
+                            <p>Nama: ${data.nama}</p>
+                            <p>Umur: ${data.umur}</p>
+                            <p>Kota: ${data.kota}</p>
+                        `);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Terjadi kesalahan: " + error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
