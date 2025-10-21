@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Studi Kasus: AJAX + Select Option</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h2>Studi Kasus: Menampilkan Data Negara dengan AJAX dan Select Option</h2>
+
+    <label for="benua">Pilih Benua:</label>
+    <select id="benua">
+        <option value="">-- Pilih Benua --</option>
+        <option value="asia">Asia</option>
+        <option value="eropa">Eropa</option>
+        <option value="amerika">Amerika</option>
+    </select>
+
+    <br><br>
+    <button id="tampilData">Tampilkan Negara</button>
+
+    <div id="hasil"></div>
+
+    <script>
+        $("#tampilData").click(function () {
+            const benua = $("#benua").val();
+            if (!benua) {
+                $("#hasil").html("<p style='color:red;'>Silakan pilih benua terlebih dahulu.</p>");
+                return;
+            }
+
+            // AJAX untuk mengambil data lokasi
+            $.ajax({
+                url: "data.json",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $("#hasil").html(`
+                        <p><strong>Data dari Server:</strong></p>
+                        <p>Nama: ${data.nama}</p>
+                        <p>Kota: ${data.kota}</p>
+                        <p>Benua yang dipilih: ${benua.toUpperCase()}</p>
+                    `);
+                },
+                error: function () {
+                    $("#hasil").html("<p style='color:red;'>Gagal mengambil data!</p>");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
