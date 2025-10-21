@@ -1,0 +1,102 @@
+[
+    {
+        "nama": "Siti Aminah",
+        "umur": 22,
+        "kota": "Jakarta"
+    },
+    {
+        "nama": "Budi Santoso",
+        "umur": 34,
+        "kota": "Surabaya"
+    },
+    {
+        "nama": "Dewi Ratnasari",
+        "umur": 28,
+        "kota": "Bandung"
+    },
+    {
+        "nama": "Agus Setiawan",
+        "umur": 45,
+        "kota": "Medan"
+    },
+    {
+        "nama": "Rina Wijaya",
+        "umur": 19,
+        "kota": "Yogyakarta"
+    },
+    {
+        "nama": "Eko Prabowo",
+        "umur": 52,
+        "kota": "Semarang"
+    },
+    {
+        "nama": "Maya Sari",
+        "umur": 31,
+        "kota": "Denpasar"
+    },
+    {
+        "nama": "Ahmad Fadli",
+        "umur": 26,
+        "kota": "Makassar"
+    },
+    {
+        "nama": "Indah Permata",
+        "umur": 29,
+        "kota": "Palembang"
+    },
+    {
+        "nama": "Joko Widodo",
+        "umur": 38,
+        "kota": "Tangerang"
+    },
+    {
+        "nama": "Nurul Hidayah",
+        "umur": 24,
+        "kota": "Depok"
+    },
+    {
+        "nama": "Fajar Rizki",
+        "umur": 41,
+        "kota": "Bekasi"
+    },
+    {
+        "nama": "Sri Wahyuni",
+        "umur": 33,
+        "kota": "Bogor"
+    },
+    {
+        "nama": "Hendra Gunawan",
+        "umur": 47,
+        "kota": "Batam"
+    },
+    {
+        "nama": "Lestari Putri",
+        "umur": 21,
+        "kota": "Pekanbaru"
+    },
+    {
+        "nama": "Bayu Satria",
+        "umur": 36,
+        "kota": "Bandar Lampung"
+    },
+    {
+        "nama": "Chintya Devi",
+        "umur": 27,
+        "kota": "Malang"
+    },
+    {
+        "nama": "Rizky Firmansyah",
+        "umur": 30,
+        "kota": "Padang"
+    },
+    {
+        "nama": "Anisa Puspita",
+        "umur": 25,
+        "kota": "Balikpapan"
+    },
+    {
+        "nama": "Hendra Kusuma",
+        "umur": 51,
+        "kota": "Jayapura"
+    }
+]

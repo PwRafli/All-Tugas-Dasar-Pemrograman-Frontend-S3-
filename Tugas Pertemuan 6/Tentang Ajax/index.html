@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh AJAX dengan JavaScript</title>
+    <style>
+        /* Optional: Add some basic styling */
+        body {
+            font-family: sans-serif;
+        }
+
+        .data-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .data-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Daftar Data Pengguna</h2>
+
+    <!-- Search Input -->
+    <label for="searchInput">Cari berdasarkan nama:</label>
+    <input type="text" id="searchInput" placeholder="Ketik nama...">
+    <button onclick="loadData()">Tampilkan Data</button>
+
+    <!-- Div to display results -->
+    <div id="hasil"></div>
+
+    <!-- Call the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+
+</html>
