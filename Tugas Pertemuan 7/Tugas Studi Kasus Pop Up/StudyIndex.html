@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APLIKASI PENJUALAN COMPUTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Studystyles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="app-header">
+            <h1>APLIKASI PENJUALAN COMPUTER</h1>
+            <p class="text-muted">Sistem Penjualan Produk Komputer</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-section">
+                    <h4 class="mb-4">Formulir Penjualan</h4>
+                    <form id="salesForm">
+                        <div class="mb-3">
+                            <label for="kategori" class="form-label">Kategori</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="kategori" readonly>
+                                <button type="button" class="btn-select" id="btnSelectKategori">
+                                    <i class="fas fa-list"></i> Select Option
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="namaBarang" class="form-label">Nama Barang</label>
+                            <input type="text" class="form-control" id="namaBarang" placeholder="Masukkan nama barang">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga (Rp)</label>
+                            <input type="number" class="form-control" id="harga" placeholder="Masukkan harga">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah</label>
+                            <input type="number" class="form-control" id="jumlah" min="1" value="1">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="diskon" class="form-label">Diskon (%)</label>
+                            <input type="number" class="form-control" id="diskon" min="0" max="100" value="0">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="discount-section">
+                    <h5>Ketentuan :</h5>
+                    <div class="discount-item">
+                        <i class="fas fa-tag text-primary"></i> Diskon 10% untuk pembelian PC/Laptop minimal 2 unit
+                    </div>
+                    <div class="discount-item">
+                        <i class="fas fa-tag text-primary"></i> Diskon 5% untuk pembelian Aksesoris minimal 5 unit
+                    </div>
+                    <div class="discount-item">
+                        <i class="fas fa-receipt text-danger"></i> Pajak 11% (PPN) akan ditambahkan ke total harga
+                    </div>
+                    <div class="discount-item">
+                        <i class="fas fa-truck text-success"></i> Gratis ongkir untuk pembelian di atas Rp 5.000.000
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-section">
+                    <h4 class="mb-4">Informasi Produk</h4>
+                    <div id="productInfo">
+                        <p class="text-muted">Pilih kategori produk untuk melihat informasi</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="button" class="btn-calculate" id="btnCalculate">
+                        <i class="fas fa-calculator"></i> Hitung Total
+                    </button>
+                    <button type="button" class="btn-reset" id="btnReset">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <h4 class="mb-3">Hasil Perhitungan</h4>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nama Barang</td>
+                        <td id="resultNamaBarang">-</td>
+                    </tr>
+                    <tr>
+                        <td>Harga Satuan</td>
+                        <td id="resultHarga">-</td>
+                    </tr>
+                    <tr>
+                        <td>Jumlah</td>
+                        <td id="resultJumlah">-</td>
+                    </tr>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td id="resultSubtotal">-</td>
+                    </tr>
+                    <tr>
+                        <td>Diskon</td>
+                        <td id="resultDiskon">-</td>
+                    </tr>
+                    <tr>
+                        <td>Pajak (11%)</td>
+                        <td id="resultPajak">-</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Total Pembayaran</td>
+                        <td id="resultTotal">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Popup Kategori -->
+    <div class="popup-overlay" id="popupKategori">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h4>Pilih Kategori Produk</h4>
+                <button class="popup-close" id="closePopupKategori">&times;</button>
+            </div>
+            <div class="category-grid">
+                <div class="category-card" data-category="PC / LAPTOP">
+                    <i class="fas fa-laptop"></i>
+                    <p>PC / LAPTOP</p>
+                </div>
+                <div class="category-card" data-category="AKSESORIS">
+                    <i class="fas fa-keyboard"></i>
+                    <p>AKSESORIS</p>
+                </div>
+                <div class="category-card" data-category="MONITOR">
+                    <i class="fas fa-desktop"></i>
+                    <p>MONITOR</p>
+                </div>
+                <div class="category-card" data-category="PRINTER">
+                    <i class="fas fa-print"></i>
+                    <p>PRINTER</p>
+                </div>
+                <div class="category-card" data-category="NETWORKING">
+                    <i class="fas fa-network-wired"></i>
+                    <p>NETWORKING</p>
+                </div>
+                <div class="category-card" data-category="SOFTWARE">
+                    <i class="fas fa-compact-disc"></i>
+                    <p>SOFTWARE</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" id="confirmKategori">Pilih</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Studyscript.js"></script>
+</body>
+
+</html>
