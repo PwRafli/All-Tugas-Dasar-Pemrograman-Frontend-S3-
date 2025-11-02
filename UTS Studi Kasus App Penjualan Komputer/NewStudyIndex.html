@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<!-- NewStudyIndex.html -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Penjualan Komputer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="NewStudystyle.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="app-header">
+            <h1>APLIKASI PENJUALAN KOMPUTER</h1>
+            <p class="text-muted">Sistem Penjualan Produk Komputer (Tema: Pop-Up)</p>
+        </div>
+
+        <!-- FORM INPUT -->
+        <div class="row">
+            <div class="col-md-6">
+                <form id="salesForm">
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label">Kategori</label>
+                        <div class="input-group">
+                            <input type="text" id="kategori" class="form-control" placeholder="Pilih kategori..."
+                                readonly>
+                            <button type="button" id="btnSelectKategori" class="btn btn-primary">
+                                <i class="fas fa-list"></i> Pilih Kategori
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="namaBarang" class="form-label">Nama Barang</label>
+                        <input type="text" id="namaBarang" class="form-control" placeholder="Masukkan nama barang">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga (Rp)</label>
+                        <input type="number" id="harga" class="form-control" placeholder="Masukkan harga barang">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jumlah" class="form-label">Jumlah</label>
+                        <input type="number" id="jumlah" class="form-control" min="1" value="1">
+                    </div>
+
+                    <button type="button" id="btnAdd" class="btn btn-success">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Tabel
+                    </button>
+                    <button type="reset" id="btnReset" class="btn btn-danger">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- POPUP KATEGORI -->
+        <div class="popup-overlay" id="popupKategori">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h4>Pilih Kategori Produk</h4>
+                    <button class="popup-close" id="closePopupKategori">&times;</button>
+                </div>
+
+                <div class="category-grid">
+                    <div class="category-card" data-category="PC / LAPTOP"><i class="fas fa-laptop"></i>
+                        <p>PC / LAPTOP</p>
+                    </div>
+                    <div class="category-card" data-category="AKSESORIS"><i class="fas fa-keyboard"></i>
+                        <p>AKSESORIS</p>
+                    </div>
+                    <div class="category-card" data-category="MONITOR"><i class="fas fa-desktop"></i>
+                        <p>MONITOR</p>
+                    </div>
+                    <div class="category-card" data-category="PRINTER"><i class="fas fa-print"></i>
+                        <p>PRINTER</p>
+                    </div>
+                    <div class="category-card" data-category="NETWORKING"><i class="fas fa-network-wired"></i>
+                        <p>NETWORKING</p>
+                    </div>
+                    <div class="category-card" data-category="SOFTWARE"><i class="fas fa-compact-disc"></i>
+                        <p>SOFTWARE</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary" id="confirmKategori">Pilih</button>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h4>Daftar Barang Dibeli</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="tabelBarang">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kategori</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th>Diskon (%)</th>
+                        <th>Subtotal</th>
+                        <th>Total</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- KUPON -->
+        <div class="coupon-section mt-4">
+            <label for="kodeKupon" class="form-label">Masukkan Kode Kupon:</label>
+            <div class="input-group">
+                <input type="text" id="kodeKupon" class="form-control" placeholder="PROMO10 / FREESHIP / VIP20">
+                <button class="btn btn-success" id="btnApplyKupon"><i class="fas fa-check"></i> Terapkan</button>
+            </div>
+            <p id="kuponInfo" class="text-muted mt-2"></p>
+        </div>
+
+        <!-- RINGKASAN -->
+        <div class="total-box mt-4">
+            <h5>Ringkasan Transaksi</h5>
+            <p id="totalBelanja">Total Belanja: Rp 0</p>
+            <p id="diskonTambahan">Diskon Tambahan: Rp 0</p>
+            <p id="pajak">Pajak (11%): Rp 0</p>
+            <p id="totalAkhir"><strong>Total Akhir: Rp 0</strong></p>
+            <div id="ongkirInfo"></div>
+
+            <div class="text-center mt-3">
+                <button type="button" id="btnMetodePembayaran" class="btn btn-info">
+                    <i class="fas fa-wallet"></i> Pilih Metode Pembayaran
+                </button>
+            </div>
+        </div>
+
+        <!-- POPUP PEMBAYARAN -->
+        <div class="popup-overlay" id="popupPembayaran">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h4>Pilih Metode Pembayaran</h4>
+                    <button class="popup-close" id="closePopupPembayaran">&times;</button>
+                </div>
+
+                <div class="payment-grid">
+                    <div class="payment-card" data-method="CASH">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <p>UANG TUNAI / CASH</p>
+                    </div>
+                    <div class="payment-card" data-method="BARCODE">
+                        <i class="fas fa-qrcode"></i>
+                        <p>BARCODE / QR</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary" id="confirmPembayaran">Pilih</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4" id="hasilPembayaran"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="NewStudyscript.js"></script>
+</body>
+
+</html>
