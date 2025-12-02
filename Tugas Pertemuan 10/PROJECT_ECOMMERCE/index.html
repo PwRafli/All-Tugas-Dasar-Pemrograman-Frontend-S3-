@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Online Marketplace</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">TOKOKU</div>
+        <div class="search-box">
+            <input type="text" placeholder="Cari produk terbaik...">
+            <button>Cari</button>
+        </div>
+        <div class="header-icons">
+            <div id="openCart" class="icon-btn">🛒</div>
+            <div class="icon-btn">👤</div>
+        </div>
+    </header>
+
+    <nav class="category-bar">
+        <a href="#">Elektronik</a>
+        <a href="#">Fashion</a>
+        <a href="#">Olahraga</a>
+        <a href="#">Gaming</a>
+        <a href="#">Kesehatan</a>
+        <a href="#">Kosmetik</a>
+        <a href="#">Rumah Tangga</a>
+        <a href="#">Anak & Bayi</a>
+    </nav>
+
+    <section class="filter-box">
+        <h3>Filter Harga</h3>
+        <div id="priceSlider"></div>
+        <p>Harga: <span id="priceLabel"></span></p>
+    </section>
+
+    <section class="product-grid">
+        <div class="product-card" data-price="150000">
+            <img src="https://via.placeholder.com/200" alt="Headphone">
+            <h4>Headphone Bass Boost</h4>
+            <p class="price">Rp 150.000</p>
+            <p class="sold">1.2RB Terjual</p>
+            <button class="addToCart">Tambah ke Keranjang</button>
+        </div>
+        <div class="product-card" data-price="90000">
+            <img src="https://via.placeholder.com/200" alt="Kaos Polos">
+            <h4>Kaos Polos Premium</h4>
+            <p class="price">Rp 90.000</p>
+            <p class="sold">4.8RB Terjual</p>
+            <button class="addToCart">Tambah ke Keranjang</button>
+        </div>
+        <div class="product-card" data-price="350000">
+            <img src="https://via.placeholder.com/200" alt="Keyboard">
+            <h4>Keyboard Mechanical RGB</h4>
+            <p class="price">Rp 350.000</p>
+            <p class="sold">8.1RB Terjual</p>
+            <button class="addToCart">Tambah ke Keranjang</button>
+        </div>
+        <div class="product-card" data-price="250000">
+            <img src="https://via.placeholder.com/200" alt="Jaket">
+            <h4>Jaket Hoodie Tebal</h4>
+            <p class="price">Rp 250.000</p>
+            <p class="sold">952 Terjual</p>
+            <button class="addToCart">Tambah ke Keranjang</button>
+        </div>
+    </section>
+
+    <div id="cartDialog" title="Keranjang Belanja">
+        <ul id="cartItems"></ul>
+        <p>Total: Rp <span id="cartTotal">0</span></p>
+    </div>
+
+    <script src="js/Script.js"></script>
+</body>
+
+</html>
