@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contoh Lengkap jQuery UI</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        #draggable,
+        #droppable {
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        #draggable {
+            background: #4CAF50;
+            color: white;
+            cursor: move;
+        }
+
+        #droppable {
+            background: #f1f1f1;
+            border: 2px dashed #333;
+        }
+
+        #sortable {
+            margin: 5px;
+            padding: 8px;
+            background: #ddd;
+            cursor: grab;
+        }
+
+        #slider {
+            margin-top: 30px;
+            width: 300px;
+        }
+
+        #progressbar {
+            margin-top: 20px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Contoh Lengkap jQuery UI</h1>
+<hr>
+<h2>1. Draggable & Droppable</h2>
+<div id="draggable">Seret saya</div>
+<div id="droppable">Jatuhkan di sini</div>
+<hr>
+
+<h2>2. Sortable</h2>
+<ul id="sortable">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+</ul>
+<hr>
+
+<h2>3. Accordion</h2>
+<div id="accordion">
+    <h3>Seksi 1</h3>
+    <div>
+        <p>Isi konten 1.</p>
+    </div>
+
+    <h3>Seksi 2</h3>
+    <div>
+        <p>Isi konten 2.</p>
+    </div>
+
+    <h3>Seksi 3</h3>
+    <div>
+        <p>Isi konten 3.</p>
+    </div>
+</div>
+<hr>
+
+<h2>4. Tabs</h2>
+<div id="tabs">
+    <ul>
+        <li><a href="#tab-1">Tab 1</a></li>
+        <li><a href="#tab-2">Tab 2</a></li>
+        <li><a href="#tab-3">Tab 3</a></li>
+    </ul>
+    <div id="tab-1">
+        <p>Konten Tab 1</p>
+    </div>
+    <div id="tab-2">
+        <p>Konten Tab 2</p>
+    </div>
+    <div id="tab-3">
+        <p>Konten Tab 3</p>
+    </div>
+</div>
+<hr>
+
+<h2>5. Datepicker</h2>
+<input type="text" id="datepicker" placeholder="Pilih tanggal">
+<hr>
+
+<h2>6. Dialog</h2>
+<button id="open-dialog">Buka Dialog</button>
+<div id="dialog" title="Dialog jQueryUI">
+    <p>Ini adalah contoh dialog.</p>
+</div>
+<hr>
+
+<h2>7. Slider</h2>
+<div id="slider"></div>
+<p>Nilai: <span id="slider-value">0</span></p>
+<hr>
+
+<h2>8. Autocomplete</h2>
+<input id="autocomplete" placeholder="Ketik nama buah...">
+<hr>
+
+<h2>9. Progressbar</h2>
+<div id="progressbar"></div>
+<hr>
+
+<script>
+    $(function () {
+        // 1. Draggable
+        $("#draggable").draggable();
+
+        // 1. Droppable
+        $("#droppable").droppable({
+            drop: function (event, ui) {
+                $(this)
+                    .css("background", "#4CAF50")
+                    .html("Berhasil dijatuhkan!");
+            }
+        });
+
+        // 2. Sortable
+        $("#sortable").sortable();
+
+        // 3. Accordion
+        $("#accordion").accordion();
+
+        // 4. Tabs
+        $("#tabs").tabs();
+
+        // 5. Datepicker
+        $("#datepicker").datepicker({
+            dateFormat: "dd-mm-yy"
+        });
+
+        // 6. Dialog
+        $("#dialog").dialog({
+            autoOpen: false
+        });
+
+        $("#open-dialog").click(function () {
+            $("#dialog").dialog("open");
+        });
+
+        // 7. Slider
+        $("#slider").slider({
+            slide: function (event, ui) {
+                $("#slider-value").text(ui.value);
+            }
+        });
+
+        // 8. Autocomplete
+        var dataBuah = ["Apel", "Mangga", "Jeruk", "Semangka", "Pepaya", "Anggur"];
+        $("#autocomplete").autocomplete({
+            source: dataBuah
+        });
+
+        // 9. Progressbar
+        $("#progressbar").progressbar({
+            value: 50 // 50%
+        });
+    });
+</script>
+</body>
+
+</html>
