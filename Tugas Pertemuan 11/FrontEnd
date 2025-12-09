@@ -1,0 +1,71 @@
+mysql> CREATE DATABASE pertemuan11_db;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> CREATE TABLE products (
+    ->     no INT NOT NULL AUTO_INCREMENT,
+    ->     nama_produk VARCHAR(100) NOT NULL,
+    ->     harga INT NOT NULL,
+    ->     foto VARCHAR(255) DEFAULT NULL,
+    ->     PRIMARY KEY (no)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> USE pertemuan11_db;
+Database changed
+mysql> CREATE TABLE products (
+    ->     no INT NOT NULL AUTO_INCREMENT,
+    ->     nama_produk VARCHAR(100) NOT NULL,
+    ->     harga INT NOT NULL,
+    ->     foto VARCHAR(255) DEFAULT NULL,
+    ->     PRIMARY KEY (no)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC products;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| no          | int          | NO   | PRI | NULL    | auto_increment |
+| nama_produk | varchar(100) | NO   |     | NULL    |                |
+| harga       | int          | NO   |     | NULL    |                |
+| foto        | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> INSERT INTO products (nama_produk, harga, foto) VALUES
+    -> ('Custom Sablon', 150000, 'custom_sablon.jpg'),
+    -> ('Sepatu Brown', 350000, 'sepatu_brown.jpg'),
+    -> ('Men''s Knitted', 250000, 'mens_knitted.jpg');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE products
+    -> CHANGE id no INT NOT NULL AUTO_INCREMENT;
+ERROR 1054 (42S22): Unknown column 'id' in 'products'
+mysql> DESC products;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| no          | int          | NO   | PRI | NULL    | auto_increment |
+| nama_produk | varchar(100) | NO   |     | NULL    |                |
+| harga       | int          | NO   |     | NULL    |                |
+| foto        | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE products
+    -> CHANGE id no INT NOT NULL AUTO_INCREMENT;
+ERROR 1054 (42S22): Unknown column 'id' in 'products'
+mysql> ALTER TABLE products CHANGE no id INT NOT NULL AUTO_INCREMENT;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC products;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| nama_produk | varchar(100) | NO   |     | NULL    |                |
+| harga       | int          | NO   |     | NULL    |                |
+| foto        | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
