@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - E-Commerce Store</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .checkout-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .order-summary {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e44d26;
+        }
+
+        .payment-method {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .payment-method:hover {
+            background-color: #f0f0f0;
+        }
+
+        .payment-method.selected {
+            border-color: #0d6efd;
+            background-color: #e7f1ff;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #6c757d;
+            font-weight: bold;
+        }
+
+        .progress-step.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .progress-step.completed {
+            background-color: #198754;
+            color: white;
+        }
+
+        .progress-line {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #e9ecef;
+        }
+
+        .progress-line.completed {
+            background-color: #198754;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">E-Commerce Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products">All Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cart"><i class="bi bi-cart3"></i> Cart <span
+                                class="badge bg-danger">{{ session.get('cart', [])|length }}</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="d-flex align-items-center mb-4">
+            <div class="progress-step completed">1</div>
+            <div class="progress-line completed"></div>
+            <div class="progress-step active">2</div>
+            <div class="progress-line"></div>
+            <div class="progress-step">3</div>
+        </div>
+        <div class="d-flex justify-content-between mb-4">
+            <div class="text-center" style="width: 30px;">Cart</div>
+            <div class="text-center" style="width: 30px;">Checkout</div>
+            <div class="text-center" style="width: 30px;">Complete</div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h1 class="mb-4">Checkout</h1>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-form">
+                    <h3 class="mb-3">Shipping Information</h3>
+                    <form id="checkout-form" action="/process_order" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3"><label for="firstName" class="form-label">First
+                                    Name</label><input type="text" class="form-control" id="firstName" name="firstName"
+                                    required></div>
+                            <div class="col-md-6 mb-3"><label for="lastName" class="form-label">Last Name</label><input
+                                    type="text" class="form-control" id="lastName" name="lastName" required></div>
+                        </div>
+                        <div class="mb-3"><label for="email" class="form-label">Email</label><input type="email"
+                                class="form-control" id="email" name="email" required></div>
+                        <div class="mb-3"><label for="phone" class="form-label">Phone Number</label><input type="tel"
+                                class="form-control" id="phone" name="phone" required></div>
+                        <div class="mb-3"><label for="address" class="form-label">Address</label><input type="text"
+                                class="form-control" id="address" name="address" required></div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3"><label for="city" class="form-label">City</label><input
+                                    type="text" class="form-control" id="city" name="city" required></div>
+                            <div class="col-md-4 mb-3"><label for="state"
+                                    class="form-label">State/Province</label><input type="text" class="form-control"
+                                    id="state" name="state" required></div>
+                            <div class="col-md-2 mb-3"><label for="zip" class="form-label">ZIP Code</label><input
+                                    type="text" class="form-control" id="zip" name="zip" required></div>
+                        </div>
+                        <div class="mb-3"><label for="deliveryDate" class="form-label">Preferred Delivery
+                                Date</label><input type="text" class="form-control" id="deliveryDate"
+                                name="deliveryDate" readonly></div>
+                        <div class="mb-3">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="saveInfo"
+                                    name="saveInfo"><label class="form-check-label" for="saveInfo">Save this information
+                                    for next time</label></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="checkout-form">
+                    <h3 class="mb-3">Payment Method</h3>
+                    <div class="payment-method" data-method="credit-card">
+                        <div class="form-check"><input class="form-check-input" type="radio" name="paymentMethod"
+                                id="creditCard" value="credit-card" checked><label class="form-check-label"
+                                for="creditCard"><strong>Credit Card</strong>
+                                <div class="mt-2"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Paypal_2014_logo.svg/200px-Paypal_2014_logo.svg.png"
+                                        alt="PayPal" style="height: 30px; margin-right: 10px;"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/200px-Visa.svg.png"
+                                        alt="Visa" style="height: 30px; margin-right: 10px;"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png"
+                                        alt="Mastercard" style="height: 30px;"></div>
+                            </label></div>
+                    </div>
+                    <div id="credit-card-form" class="mt-3">
+                        <div class="mb-3"><label for="cardNumber" class="form-label">Card Number</label><input
+                                type="text" class="form-control" id="cardNumber" name="cardNumber"
+                                placeholder="1234 5678 9012 3456" required></div>
+                        <div class="mb-3"><label for="cardName" class="form-label">Name on Card</label><input
+                                type="text" class="form-control" id="cardName" name="cardName" required></div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3"><label for="expiryDate" class="form-label">Expiry
+                                    Date</label><input type="text" class="form-control" id="expiryDate"
+                                    name="expiryDate" placeholder="MM/YY" required></div>
+                            <div class="col-md-6 mb-3"><label for="cvv" class="form-label">CVV</label><input type="text"
+                                    class="form-control" id="cvv" name="cvv" placeholder="123" required></div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="bank-transfer">
+                        <div class="form-check"><input class="form-check-input" type="radio" name="paymentMethod"
+                                id="bankTransfer" value="bank-transfer"><label class="form-check-label"
+                                for="bankTransfer"><strong>Bank Transfer</strong>
+                                <p class="mb-0 mt-1">Transfer directly to our bank account. Your order will be processed
+                                    once the payment is confirmed.</p>
+                            </label></div>
+                    </div>
+                    <div class="payment-method" data-method="cash-on-delivery">
+                        <div class="form-check"><input class="form-check-input" type="radio" name="paymentMethod"
+                                id="cashOnDelivery" value="cash-on-delivery"><label class="form-check-label"
+                                for="cashOnDelivery"><strong>Cash on Delivery</strong>
+                                <p class="mb-0 mt-1">Pay when you receive your order. Available for selected areas only.
+                                </p>
+                            </label></div>
+                    </div>
+                </div>
+                <button type="submit" form="checkout-form" class="btn btn-primary btn-lg w-100 mt-3">Place
+                    Order</button>
+            </div>
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3 class="mb-3">Order Summary</h3>
+                    <p>You have {{ session.get('cart', [])|length }} items in your cart.</p>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-2"><span>Subtotal:</span><span>Rp {{
+                            "{:,}".format(subtotal | default(0)) }}</span></div>
+                    <div class="d-flex justify-content-between mb-2"><span>Shipping:</span><span>Rp {{
+                            "{:,}".format(shipping | default(0)) }}</span></div>
+                    <div class="d-flex justify-content-between mb-2"><span>Tax (10%):</span><span>Rp {{
+                            "{:,}".format(tax | default(0)) }}</span></div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-3"><strong>Total:</strong><strong>Rp {{
+                            "{:,}".format(total | default(0)) }}</strong></div>
+                    <div class="d-flex justify-content-between"><a href="/cart" class="btn btn-outline-secondary">Back
+                            to Cart</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 E-Commerce Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>$(document).ready(function () { $('#deliveryDate').datepicker({ minDate: 1, maxDate: "+1M", dateFormat: "dd/mm/yy" }); $('.payment-method').on('click', function () { $('.payment-method').removeClass('selected'); $(this).addClass('selected'); $(this).find('input[type="radio"]').prop('checked', true); if ($(this).data('method') === 'credit-card') { $('#credit-card-form').show(); } else { $('#credit-card-form').hide(); } }); $('.payment-method[data-method="credit-card"]').addClass('selected'); $('#cardNumber').on('input', function () { let value = $(this).val().replace(/\s/g, ''); let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value; $(this).val(formattedValue); }); $('#expiryDate').on('input', function () { let value = $(this).val().replace(/\D/g, ''); if (value.length >= 2) { value = value.substring(0, 2) + '/' + value.substring(2, 4); } $(this).val(value); }); $('#cvv').on('input', function () { $(this).val($(this).val().replace(/\D/g, '')); }); $('#checkout-form').on('submit', function (e) { e.preventDefault(); let isValid = true; const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'state', 'zip']; for (const field of requiredFields) { if (!$(`#${field}`).val()) { isValid = false; $(`#${field}`).addClass('is-invalid'); } else { $(`#${field}`).removeClass('is-invalid'); } } const paymentMethod = $('input[name="paymentMethod"]:checked').val(); if (paymentMethod === 'credit-card') { const cardFields = ['cardNumber', 'cardName', 'expiryDate', 'cvv']; for (const field of cardFields) { if (!$(`#${field}`).val()) { isValid = false; $(`#${field}`).addClass('is-invalid'); } else { $(`#${field}`).removeClass('is-invalid'); } } } if (isValid) { $('#confirm-dialog').dialog({ resizable: false, height: "auto", width: 400, modal: true, buttons: { "Confirm Order": function () { $(this).dialog("close"); window.location.href = "/"; }, Cancel: function () { $(this).dialog("close"); } } }); } else { $('#error-dialog').dialog({ modal: true, buttons: { OK: function () { $(this).dialog("close"); } } }); } }); });</script>
+    <div id="confirm-dialog" title="Confirm Order">
+        <p>Are you sure you want to place this order?</p>
+    </div>
+    <div id="error-dialog" title="Error">
+        <p>Please fill in all required fields.</p>
+    </div>
+</body>
+
+</html>
