@@ -1,0 +1,67 @@
+/*
+ * File: static/css/dark.css
+ * Tujuan: Mendefinisikan gaya untuk Dark Mode
+ */
+
+/* ==================================== */
+/* Body & Teks Umum */
+/* ==================================== */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode a {
+    color: #4da6ff;
+}
+
+/* Memastikan teks yang seharusnya muted/kecil tetap terbaca */
+body.dark-mode .text-muted {
+    color: #b0b0b0 !important;
+}
+
+/* ==================================== */
+/* Elemen UI yang Diubah */
+/* ==================================== */
+
+/* Navbar dan Bottom Nav fix (disinggung di index.html) */
+body.dark-mode .navbar,
+body.dark-mode .bottom-nav {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    /* cite: 142 */
+}
+
+/* Card, Info, List Group Item */
+body.dark-mode .product-card,
+body.dark-mode .info-card,
+/* cite: 367 */
+body.dark-mode .bottom-action,
+/* cite: 367 */
+body.dark-mode .list-group-item {
+    background-color: #1e1e1e !important;
+    /* cite: 369 */
+    border-color: #333333 !important;
+    /* cite: 370 */
+    color: #f1f1f1;
+}
+
+/* Ikon Kategori */
+body.dark-mode .cat-icon {
+    background-color: #333333 !important;
+    /* cite: 144 */
+}
+
+/* Search Box */
+body.dark-mode .search-box {
+    background-color: #333333;
+    color: #f1f1f1;
+    border: 1px solid #444444;
+}
+
+/* Alert Light (seperti di cart.html) */
+body.dark-mode .alert-light {
+    background-color: #2a2a2a !important;
+    color: #cccccc !important;
+    border-color: #333333;
+}

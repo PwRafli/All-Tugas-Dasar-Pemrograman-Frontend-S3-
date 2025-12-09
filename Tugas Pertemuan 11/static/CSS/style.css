@@ -1,0 +1,152 @@
+/*
+ * File: static/css/style.css
+ * Tujuan: Mendefinisikan gaya umum (non-dark mode)
+ */
+
+/* ==================================== */
+/* Styles Dari Index.html */
+/* ==================================== */
+
+/* Search Bar Modern */
+.search-box {
+    background-color: #f1f1f1;
+    /* cite: 91 */
+    padding: 8px 12px;
+    /* cite: 92 */
+    border-radius: 10px;
+    /* cite: 93 */
+    width: 100%;
+    /* cite: 94 */
+}
+
+/* Kategori Icon Style */
+.cat-icon {
+    width: 55px;
+    /* cite: 97 */
+    height: 55px;
+    /* cite: 98 */
+    background-color: #f7f7f7;
+    /* cite: 100 */
+    border-radius: 50%;
+    /* cite: 101 */
+    display: flex;
+    /* cite: 102, 125 */
+    justify-content: center;
+    /* cite: 103, 126 */
+    align-items: center;
+    /* cite: 104, 127 */
+    font-size: 22px;
+    /* cite: 105 */
+}
+
+/* Product Card Modern */
+.product-card {
+    border-radius: 12px;
+    /* cite: 108 */
+    overflow: hidden;
+    /* cite: 109 */
+    background-color: #ffffff;
+    /* cite: 110 */
+}
+
+.product-card img {
+    height: 150px;
+    /* cite: 112 */
+    object-fit: cover;
+    /* cite: 113 */
+    width: 100%;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    /* cite: 116 */
+    bottom: 0;
+    /* cite: 117 */
+    left: 0;
+    /* cite: 118 */
+    right: 0;
+    /* cite: 119 */
+    height: 60px;
+    /* cite: 120 */
+    background: #ffffff;
+    /* cite: 122 */
+    border-top: 1px solid #ccc;
+    /* cite: 124 */
+    display: flex;
+    /* cite: 125 */
+    justify-content: space-around;
+    /* cite: 126 */
+    align-items: center;
+    /* cite: 127 */
+    font-size: 13px;
+    /* cite: 128 */
+    z-index: 999;
+    /* cite: 129 */
+}
+
+.bottom-nav a {
+    color: #777;
+    /* cite: 133 */
+    text-decoration: none;
+    /* cite: 134 */
+    text-align: center;
+    /* cite: 135 */
+}
+
+.bottom-nav a.active {
+    color: #0d6efd;
+    /* cite: 137 */
+}
+
+/* ==================================== */
+/* Styles Dari product_detail.html */
+/* ==================================== */
+
+.bottom-action {
+    position: fixed;
+    /* cite: 310 */
+    bottom: 0;
+    /* cite: 312 */
+    left: 0;
+    /* cite: 320 */
+    right: 0;
+    /* cite: 321 */
+    background: #ffffff;
+    padding: 10px;
+    /* cite: 323 */
+    border-top: 1px solid #ddd;
+    /* cite: 324 */
+    display: flex;
+    /* cite: 325 */
+    justify-content: space-between;
+    /* cite: 326 */
+    gap: 10px;
+    /* cite: 327 */
+    z-index: 999;
+    /* cite: 328 */
+}
+
+.product-img {
+    width: 100%;
+    /* cite: 334 */
+    height: 260px;
+    /* cite: 335 */
+    object-fit: cover;
+    /* cite: 336 */
+}
+
+.info-card {
+    background: #ffffff;
+    /* Mirip cite: 339 */
+    border-radius: 12px;
+    /* cite: 340 */
+    padding: 15px;
+    /* cite: 341 */
+    margin-top: -20px;
+    /* cite: 342 */
+    position: relative;
+    /* cite: 343 */
+    z-index: 5;
+    /* cite: 344 */
+}
