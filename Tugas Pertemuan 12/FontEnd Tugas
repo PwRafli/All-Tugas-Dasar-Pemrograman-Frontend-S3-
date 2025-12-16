@@ -1,0 +1,37 @@
+Pertemuan9> show dbs
+Pertemuan9      48.00 KiB
+admin           40.00 KiB
+config          96.00 KiB
+local           80.00 KiB
+pertemuan10Tes  40.00 KiB
+Pertemuan9> use crud_database
+switched to db crud_database
+crud_database> db.createCollection("products")
+{ ok: 1 }
+crud_database> db.products.insertMany([
+...     {
+...         name: "Standard Room",
+...         description: "Kamar standar nyaman",
+...         price: 450000,
+...         guests: 2,
+...         amenities: "AC, WiFi",
+...         available: true
+...     },
+...     {
+...         name: "Family Room",
+...         description: "Kamar keluarga luas",
+...         price: 950000,
+...         guests: 4,
+...         amenities: "AC, WiFi, TV, Sofa",
+...         available: false
+...     }
+... ])
+...
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6940be109d09364befb71236'),
+    '1': ObjectId('6940be109d09364befb71237')
+  }
+}
+crud_database>
