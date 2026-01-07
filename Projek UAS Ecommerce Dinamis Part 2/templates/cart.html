@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Checkout - Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        // Early initializer so dark mode applies before render
+        (function () {
+            try {
+                if (localStorage.getItem('darkMode') === 'enabled') {
+                    document.documentElement.classList.add('dark-mode');
+                    if (document.body) document.body.classList.add('dark-mode');
+                }
+            } catch (e) { /* ignore in non-browser environments */ }
+        })();
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark p-2 shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand fw-bold fs-5" href="/">Bali Homestays</a>
+            <button id="darkModeToggle" class="btn btn-outline-light btn-sm" onclick="toggleDarkMode()" data-dark-toggle
+                aria-pressed="false" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+
+    <div class="container mt-3 content-container">
+        <h5 class="fw-bold mb-3">Keranjang Anda</h5>
+        {% if rooms and rooms|length > 0 %}
+        <div class="list-group mb-3">
+            {% for room in rooms %}
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="fw-bold">{{ room['name'] }}</div>
+                    <small class="text-muted">{{ room['code_room'] }} - {{ room['room_size'] }}</small>
+                </div>
+                <div class="text-end">
+                    <div class="fw-bold">Rp {{ '{:,.0f}'.format(room['price']) }}</div>
+                    <a href="{{ url_for('remove_from_cart', id=room['id']) }}"
+                        class="btn btn-sm btn-outline-danger mt-2">Hapus</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="card p-3">
+            <div class="d-flex justify-content-between"><span class="fw-bold">Total:</span><span
+                    class="fw-bold text-success">Rp {{ '{:,.0f}'.format(total) }}</span></div>
+        </div>
+        <button class="btn btn-primary w-100 py-2 mt-4">Konfirmasi Pesanan</button>
+        {% else %}
+        <div class="alert alert-info">Keranjang kosong. <a href="{{ url_for('rooms_list') }}">Lihat kamar</a></div>
+        {% endif %}
+    </div>
+
+    <div class="bottom-nav">
+        <a href="/">
+            <div>🏠</div>Home
+        </a>
+        <a href="/rooms">
+            <div>🏨</div>Rooms
+        </a>
+        <a href="/cart">
+            <div>🛒</div>Cart
+        </a>
+        {% if 'email' in session %}
+        <a href="/profile">
+            <div>👤</div>Profil
+        </a>
+        {% else %}
+        <a href="/login">
+            <div>👤</div>Profil
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- Floating dark/light toggle button -->
+    <button class="dark-toggle" data-dark-toggle onclick="toggleDarkMode()" aria-label="Toggle dark mode"
+        title="Toggle dark mode">🌙</button>
+</body>
+
+</html>

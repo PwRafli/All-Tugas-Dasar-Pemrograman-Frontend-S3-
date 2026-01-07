@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bali Homestays - Mobile Modern</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        // Early initializer so dark mode applies before render
+        (function () {
+            try {
+                if (localStorage.getItem('darkMode') === 'enabled') {
+                    document.documentElement.classList.add('dark-mode');
+                    if (document.body) document.body.classList.add('dark-mode');
+                }
+            } catch (e) { /* ignore in non-browser environments */ }
+        })();
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark p-2 shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <span class="navbar-brand fw-bold fs-5">Bali Homestays</span>
+            <button id="darkModeToggle" class="btn btn-outline-light btn-sm" onclick="toggleDarkMode()" data-dark-toggle
+                aria-pressed="false" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mt-2">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="container mt-2">
+        <input id="searchInput" type="text" class="search-box" placeholder="Cari homestay..." />
+    </div>
+
+    <div id="banner" class="carousel slide mt-3" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ url_for('static', filename='img/banner1.jpg') }}" class="d-block w-100 rounded"
+                    style="height:150px; object-fit:cover;">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='img/banner2.jpg') }}" class="d-block w-100 rounded"
+                    style="height:150px; object-fit:cover;">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row text-center g-3">
+            <div class="col-3">
+                <div class="cat-icon">🏨</div><small>Ubud</small>
+            </div>
+            <div class="col-3">
+                <div class="cat-icon">🏖️</div><small>Seminyak</small>
+            </div>
+            <div class="col-3">
+                <div class="cat-icon">🌴</div><small>Sanur</small>
+            </div>
+            <div class="col-3">
+                <div class="cat-icon">🏝️</div><small>Lainnya</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h6 class="fw-bold mb-2">Rekomendasi Untuk Anda</h6>
+        <div class="row g-3">
+            {% if rooms %}
+            {% for room in rooms %}
+            <div class="col-6">
+                <div class="room-card shadow-sm room-item" data-location="all">
+                    <!-- PASTIKAN PATH GAMBAR BENAR -->
+                    <img src="{{ url_for('static', filename='uploads/' ~ room.photo) }}" class="w-100"
+                        style="height: 150px; object-fit: cover;" alt="{{ room.name }}">
+                    <div class="p-2">
+                        <!-- PASTIKAN NAMA KOLOM BENAR -->
+                        <small class="fw-bold d-block">{{ room.name }}</small>
+                        
+                        {% if room.description %}
+                        <small class="text-muted d-block">
+                            {{ room.description[:40] }}{% if room.description|length > 40 %}…{% endif %}
+                        </small>
+                        {% endif %}
+                        
+                        {% if room.amenities %}
+                        <small class="text-muted d-block">
+                            <strong>Fasilitas:</strong>
+                            {{ room.amenities.split(',')[0] }}{% if ',' in room.amenities %}, dll{% endif %}
+                        </small>
+                        {% endif %}
+                        
+                        <small class="text-muted d-block">
+                            👥 {{ room.guests }} tamu
+                        </small>
+                        
+                        <small class="text-primary fw-bold d-block mt-1">
+                            Rp {{ "{:,}".format(room.price) }}
+                        </small>
+                        
+                        <a href="/room/{{ room.id }}" class="btn btn-primary btn-sm w-100 mt-1">
+                            Detail
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12">
+                <p class="text-center text-muted">Belum ada homestay yang tersedia.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+
+    <!-- UPDATED NAVIGATION -->
+    <div class="bottom-nav">
+        <a href="/" class="active">
+            <div>🏠</div>Home
+        </a>
+        <a href="{{ url_for('rooms_list') }}">
+            <div>🏨</div>Rooms
+        </a>
+        <a href="/cart">
+            <div>🛒</div>Cart
+        </a>
+        {% if 'email' in session %}
+        <a href="/profile">
+            <div>👤</div>Profil
+        </a>
+        {% else %}
+        <a href="/login">
+            <div>👤</div>Profil
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- Floating dark/light toggle button -->
+    <button class="dark-toggle" data-dark-toggle onclick="toggleDarkMode()" aria-label="Toggle dark mode"
+        title="Toggle dark mode">🌙</button>
+</body>
+
+</html>

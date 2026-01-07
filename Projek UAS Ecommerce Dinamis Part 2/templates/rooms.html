@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Rooms - Hotel Stay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('darkMode') === 'enabled') {
+                    document.documentElement.classList.add('dark-mode');
+                    if (document.body) document.body.classList.add('dark-mode');
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <style>
+        .room-card {
+            transition: transform 0.3s;
+            height: 100%;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .room-img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e44d26;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Hotel Stay</a>
+
+            <button id="darkModeToggle" class="btn btn-outline-dark btn-sm" onclick="toggleDarkMode()">🌙</button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('rooms_list') }}">All Rooms</a>
+                    </li>
+
+                    {% if 'user_id' in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BOTTOM NAV (MOBILE) -->
+    <div class="bottom-nav">
+        <a href="{{ url_for('index') }}" class="{% if request.path == url_for('index') %}active{% endif %}">
+            <div>🏠</div>
+            Home
+        </a>
+
+        <a href="{{ url_for('rooms_list') }}" class="{% if request.path == url_for('rooms_list') %}active{% endif %}">
+            <div>🏨</div>
+            Rooms
+        </a>
+
+        <a href="{{ url_for('cart') }}" class="{% if request.path == '/cart' %}active{% endif %}">
+            <div>🛒</div>
+            Cart
+        </a>
+
+        {% if 'user_id' in session %}
+        <a href="{{ url_for('logout') }}">
+            <div>👤</div>
+            Logout
+        </a>
+        {% else %}
+        <a href="{{ url_for('login') }}">
+            <div>👤</div>
+            Login
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container my-4 rooms-page">
+
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+            <h1 class="mb-2">All Available Rooms</h1>
+
+            <!-- SEARCH -->
+            <form id="searchForm" class="d-flex gap-2" action="{{ url_for('rooms_list') }}" method="get">
+                <input id="searchInput" name="search" type="text" class="form-control" placeholder="Cari homestay..."
+                    value="{{ search|default('') }}">
+                <button class="btn btn-primary">Search</button>
+            </form>
+        </div>
+
+        <!-- ROOMS LIST -->
+        <div class="row" id="rooms-container">
+            {% for room in rooms %}
+            <div class="col-12 col-sm-6 col-md-4 mb-4 room-item">
+                <div class="card room-card shadow-sm">
+                    <img src="{{ url_for('static', filename='uploads/' ~ (room.photo or 'noimage.svg')) }}"
+                        class="card-img-top room-img" alt="{{ room.name }}">
+
+                    <div class="card-body d-flex flex-column p-2">
+                        <small class="fw-bold room-name">{{ room.name }}</small>
+                        
+                        <small class="text-muted">
+                            {{ room.description[:40] }}{% if room.description|length > 40 %}…{% endif %}
+                        </small>
+                        
+                        {% if room.amenities %}
+                        <small class="text-muted d-block">
+                            <strong>Fasilitas:</strong>
+                            {{ room.amenities.split(',')[0] }}{% if ',' in room.amenities %}, dll{% endif %}
+                        </small>
+                        {% endif %}
+                        
+                        <small class="text-muted d-block">
+                            👥 {{ room.guests }} tamu
+                        </small>
+                        
+                        <small class="text-primary fw-bold d-block mt-1">
+                            Rp {{ "{:,}".format(room.price) }}
+                        </small>
+                        
+                        <a href="{{ url_for('room_detail', id=room.id) }}" class="btn btn-primary btn-sm w-100 mt-1">
+                            Detail
+                        </a>
+                            <strong>Fasilitas:</strong>
+                            {{ room.amenities if room.amenities else 'Belum tersedia' }}
+                        </small>
+                        
+                        <small class="text-muted d-block">
+                            <strong>Kapasitas:</strong> {{ room.guests }} tamu
+                        </small>
+                        <div class="mt-auto pt-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="price mb-0">
+                                    Rp {{ "{:,}".format(room.price) }} / night
+                                </p>
+
+                                <div class="d-flex gap-2">
+                                    <a href="{{ url_for('room_detail', id=room.id) }}"
+                                        class="btn btn-outline-primary btn-sm">
+                                        View
+                                    </a>
+                                    <a href="{{ url_for('add_to_cart', id=room.id) }}" class="btn btn-success btn-sm">
+                                        Book
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- PAGINATION -->
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% for p in range(1, total_pages + 1) %}
+                <li class="page-item {% if p == page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('rooms_list', page=p, search=search) }}">
+                        {{ p }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <button class="dark-toggle" data-dark-toggle onclick="toggleDarkMode()">🌙</button>
+
+</body>
+
+</html>
