@@ -1,1 +1,47 @@
 Penggunaan Sqilate
+
+
+1. Tabel Kamar Standar (Standard Room)
+Luas 18-30 m², fokus pada fasilitas esensial.
+Photo,Code,Name,Description,Size,Fasilitas,Price,Guests
+[Img],STD-A1,Jepun Bali Ubud,Kamar minimalis nuansa bambu.,18 m² (Single),"WiFi, AC, Shower Panas, Kopi/Teh",Rp12.000.000,1
+[Img],STD-A2,Our Bali Homestay,Kamar standar balkon taman.,22 m² (Double),"WiFi, AC, Smart TV, Perlengkapan Mandi",Rp14.500.000,2
+[Img],STD-A3,Bagus Homestay,Suasana tenang lantai dua.,25 m² (Queen),"WiFi, AC, Meja Kerja, Air Mineral",Rp16.200.000,2
+[Img],STD-A4,Pondok Ayu,Dekat area dapur umum.,28 m² (King),"WiFi, AC, Brankas, Hairdryer",Rp18.000.000,2
+[Img],STD-A5,Gedong Bali,Gaya klasik Bali lantai dasar.,30 m² (Queen),"WiFi, AC, Area Duduk, Pembersihan Harian",Rp19.500.000,2
+
+2. Tabel Deluxe / Superior Room
+Luas 20-37 m², dilengkapi area duduk tambahan.
+Photo,Code,Name,Description,Size,Fasilitas,Price,Guests
+[Img],DLX-B1,Gusti Home Stay,Kamar luas dengan sofa sudut.,32 m² (King),"Bathtub, Minibar, Netflix, Sofa Bed",Rp22.000.000,2
+[Img],DLX-B2,Umah Kita,Interior modern & balkon luas.,35 m² (Super King),"Mesin Espresso, Bathrobe, Jemputan Bandara",Rp25.500.000,2
+[Img],DLX-B3,Bali DD Homestay,Akses cepat ke kolam renang.,33 m² (Queen),"Speaker Bluetooth, Smart Room, Welcome Drink",Rp23.800.000,2
+[Img],DLX-B4,Surya Homestay,Dilengkapi bathtub outdoor.,37 m² (King),"Jacuzzi, Room Service 24 Jam, Spa Voucher",Rp28.000.000,2
+[Img],DLX-B5,Dio Homestay,Pemandangan sunset terbaik.,30 m² (Queen),"Kitchenette, Kursi Pijat, Layanan Laundry",Rp21.000.000,2
+
+3. Tabel Twin Room
+Dua tempat tidur single (100x200 cm), cocok untuk teman.
+Photo,Code,Name,Description,Size,Fasilitas,Price,Guests
+[Img],TWN-C1,Jepun Bali Ubud,"Dua kasur terpisah, cerah.",24 m² (Twin),"High Speed WiFi, Meja Belajar Ganda, AC",Rp20.000.000,2
+[Img],TWN-C2,Our Bali Homestay,Kamar twin akses pool.,26 m² (Twin),"Soundproof Room, Rak Baju, TV 43 Inch",Rp21.500.000,2
+[Img],TWN-C3,Bagus Homestay,Desain fungsional & luas.,28 m² (Twin),"Garden Access, Standing Mirror, Setrika",Rp22.800.000,2
+[Img],TWN-C4,Pondok Ayu,Area sunyi istirahat maksimal.,30 m² (Twin),"Premium Linens, Board Games, Kipas Langit",Rp24.000.000,2
+[Img],TWN-C5,Gedong Bali,Ventilasi tinggi & nyaman.,25 m² (Twin),"Pool View, Balkon Pribadi, Handuk Premium",Rp20.900.000,2
+
+4. Tabel Family Room
+Ruang besar untuk keluarga (3-4 orang).
+Photo,Code,Name,Description,Size,Fasilitas,Price,Guests
+[Img],FAM-D1,Gusti Home Stay,Unit luas untuk 3 orang.,45 m² (Family),"Microwave, Meja Makan, Area Bermain Anak",Rp32.000.000,3
+[Img],FAM-D2,Umah Kita,Kamar loft (dua tingkat).,55 m² (Family),"Dapur Lengkap, Mesin Cuci, Refrigerator Besar",Rp38.000.000,4
+[Img],FAM-D3,Bali DD Homestay,Ruang tengah untuk kumpul.,48 m² (Family),"Nintendo Switch, Snack Bar, Kamar Mandi Ganda",Rp34.500.000,4
+[Img],FAM-D4,Surya Homestay,Teras pribadi menghadap kebun.,50 m² (Family),"Alat BBQ, Hammock, Kolam Ikan Pribadi",Rp36.200.000,4
+[Img],FAM-D5,Dio Homestay,Unit keluarga privasi total.,42 m² (Family),"Baby Cot, Pantry, DVD Player & Home Theater",Rp31.000.000,3
+
+5. Tabel Spesifikasi Kasur (Bed Type Options)
+Variasi berdasarkan jenis kasur spesifik.
+Photo,Code,Bed Type,Dimensi,Fasilitas Kasur,Price,Guests
+[Img],BED-E1,Single Bed,90x200 cm,"Lampu Baca, Bantal Bulu Angsa, Seprei Katun",Rp11.000.000,1
+[Img],BED-E2,Double Bed,120x200 cm,"Pelindung Kasur, Guling Premium, Bed Runner",Rp15.000.000,2
+[Img],BED-E3,Queen Size,160x200 cm,"Memory Foam, Topper Kasur, Kelambu Modern",Rp22.000.000,2
+[Img],BED-E4,King Size,180x200 cm,"Ortopedi Mattress, Luxury Duvet, Diffuser",Rp27.000.000,2
+[Img],BED-E5,Super King,200x200 cm,"Premium Latex, Silk Sheets, Pillow Menu",Rp35.000.000,2
