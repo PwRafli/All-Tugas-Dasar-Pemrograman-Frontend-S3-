@@ -1,0 +1,81 @@
+FullStack Tugas Projeck
+Cara menjalankan server nya 
+( Start-Servers.bat )
+
+-----------------------------------+
+👤 Username: customer
+📧 E-mail: customer@gmail.com
+🔑 Password: customer123
+-----------------------------------+
+👤 Username: admin
+🔑 Password: admin123
+-----------------------------------+
+
+Cara Cek DataBae MySQL
+
+DESC checkouts;
+SELECT * FROM checkouts;
+
+DESC rooms;
+SELECT * FROM rooms;
+-----------------------------------+
+
+📁 Projeck-Fullstack-Development/
+│
+├── 📄 Start-Servers.bat
+│
+├── 📁 Backend/
+│   ├── 📄 app.js
+│   ├── 📄 db.js
+│   ├── 📄 package.json
+│   ├── 📄 package-lock.json
+│   │
+│   ├── 📁 uploads/
+│   ├── 📁 CustomerPhotos/
+│   ├── 📁 img/
+│   │
+│   └── 📁 views/
+│       ├── 📄 index.ejs
+│       ├── 📄 add.ejs
+│       └── 📄 edit.ejs
+│
+├── 📁 Frontend/
+│   ├── 📄 package.json
+│   ├── 📄 package-lock.json
+│   │
+│   └── 📁 homestay/
+│       ├── 📄 package.json
+│       ├── 📄 package-lock.json
+│       ├── 📄 README.md
+│       ├── 📄 .gitignore
+│       ├── 📄 jsconfig.json
+│       ├── 📄 next.config.mjs
+│       ├── 📄 postcss.config.mjs
+│       ├── 📄 eslint.config.mjs
+│       │
+│       ├── 📁 app/
+│       │   ├── 📄 layout.js
+│       │   ├── 📄 page.js
+│       │   ├── 📄 globals.css
+│       │   │
+│       │   ├── 📁 (auth)/
+│       │   │   ├── 📁 login/
+│       │   │   └── 📁 register/
+│       │   │
+│       │   ├── 📁 api/
+│       │   ├── 📁 booking/
+│       │   ├── 📁 profile/
+│       │   └── 📁 rooms/
+│       │
+│       ├── 📁 components/
+│       │   └── 📄 Navbar.js
+│       │
+│       ├── 📁 contexts/
+│       │   ├── 📄 BookingContext.js
+│       │   └── 📄 NotificationContext.js
+│       │
+│       ├── 📁 public/
+│       └── 📁 styles/
+│
+└── 📁 LoginPage/
+    └── 📄 index.html
